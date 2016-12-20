@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class Display extends React.Component {
+export default class DigitalDisplay extends React.Component {
   constructor(props) {
     super(props)
     this.formatTime = this.formatTime.bind(this)
@@ -15,7 +15,7 @@ export default class Display extends React.Component {
   }
 
   formatTime(seconds) {
-    return `${Display.padUnder60(seconds, 3600)}:${Display.padUnder60(seconds, 60)}:${Display.padUnder60(seconds, 1)}`
+    return `${DigitalDisplay.padUnder60(seconds, 3600)}:${DigitalDisplay.padUnder60(seconds, 60)}:${DigitalDisplay.padUnder60(seconds, 1)}`
   }
 
   static padUnder60(seconds, units) {

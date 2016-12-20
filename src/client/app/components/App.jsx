@@ -1,5 +1,6 @@
 import React from 'react'
-import Display from './Display.jsx'
+import DigitalDisplay from './DigitalDisplay.jsx'
+import AnalogDisplay from './AnalogDisplay.jsx'
 import Controls from './Controls.jsx'
 
 export default class App extends React.Component {
@@ -12,17 +13,22 @@ export default class App extends React.Component {
   }
 
   render() {
+    let digitalDisplayStyle = {
+      float: 'left',
+      border: '1px solid red'
+    }
     return (
       <div>
-        <section>
-          <h2>Timer</h2>
-        </section>
-        <section>
-          <Display secondsLapsed={this.state.secondsLapsed}/>
-        </section>
-        <section>
+        <h2>Timer</h2>
+        <div style={digitalDisplayStyle}>
+          <DigitalDisplay secondsLapsed={this.state.secondsLapsed}/>
+        </div>
+        <div>
+          <AnalogDisplay secondsLapsed={this.state.secondsLapsed}/>
+        </div>
+        <div>
           <Controls updateHandler={this.timeUpdated} />
-        </section>
+        </div>
       </div>
     )
   }
