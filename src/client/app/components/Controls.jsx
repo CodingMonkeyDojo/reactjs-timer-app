@@ -9,6 +9,7 @@ export default class Controls extends React.Component {
     }
     this.handleStart = this.handleStart.bind(this)
     this.handleStop = this.handleStop.bind(this)
+    this.clockTick = this.clockTick.bind(this)
     this.notifyUpdate = this.notifyUpdate.bind(this)
   }
 
@@ -28,12 +29,15 @@ export default class Controls extends React.Component {
 
   handleStart() {
     this.setState({
-      timerId: setInterval(() => {
-        this.setState({
-          secondsLapsed: this.state.secondsLapsed + 1
-        })
-        this.notifyUpdate()
-      }, 1000)})
+      timerId: setInterval(this.clockTick, 1000)
+    })
+  }
+
+  clockTick() {
+    this.setState({
+      secondsLapsed: this.state.secondsLapsed + 1
+    })
+    this.notifyUpdate()
   }
 
   handleStop() {

@@ -22,9 +22,6 @@ export default class AnalogDisplay extends React.Component {
 
     return (
       <div className="analog-display">
-        <div>Angle in (Radian): {degree}</div>
-        <div>Offset X: {offsetX}</div>
-        <div>Offset Y: {offsetY}</div>
         <svg>
           <circle cx={clockX} cy={clockY} r={clockRadius} stroke="blue" strokeWidth={4} fill="white" />
           <line x1={clockX} y1={clockY} x2={clockX + offsetX} y2={clockY - offsetY} style={lineStyle}></line>
