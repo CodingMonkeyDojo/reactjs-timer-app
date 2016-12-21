@@ -78,4 +78,12 @@ describe('Testing state management for Controls component', () => {
     expect(handlerFunction.mock.calls.length).toBe(2)
   })
 
+  it('multiple handleStart() should not set multiple intervals', () => {
+    controls.handleStart()
+    controls.handleStart()
+    controls.clockTick()
+
+    expect(setInterval.mock.calls.length).toBe(1)
+  })
+
 })

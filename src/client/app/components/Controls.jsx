@@ -25,9 +25,11 @@ export default class Controls extends React.Component {
   }
 
   handleStart() {
-    this.setState({
-      timerId: setInterval(this.clockTick, 1000)
-    })
+    if (!this.state.timerId) {
+      this.setState({
+        timerId: setInterval(this.clockTick, 1000)
+      })
+    }
   }
 
   handleStop() {
