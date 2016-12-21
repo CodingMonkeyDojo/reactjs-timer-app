@@ -9,6 +9,7 @@ export default class Controls extends React.Component {
     }
     this.handleStart = this.handleStart.bind(this)
     this.handleStop = this.handleStop.bind(this)
+    this.handleReset = this.handleReset.bind(this)
     this.clockTick = this.clockTick.bind(this)
     this.notifyUpdate = this.notifyUpdate.bind(this)
   }
@@ -18,13 +19,9 @@ export default class Controls extends React.Component {
       <div>
         <div><button onClick={this.handleStart}>Start</button></div>
         <div><button onClick={this.handleStop}>Stop</button></div>
-        <div><button>Reset</button></div>
+        <div><button onClick={this.handleReset}>Reset</button></div>
       </div>
     )
-  }
-
-  notifyUpdate() {
-    this.props.updateHandler(this.state.secondsLapsed)
   }
 
   handleStart() {
@@ -33,16 +30,36 @@ export default class Controls extends React.Component {
     })
   }
 
-  clockTick() {
-    this.setState({
-      secondsLapsed: this.state.secondsLapsed + 1
-    })
-    this.notifyUpdate()
-  }
-
   handleStop() {
     if (this.state.timerId) {
       clearInterval(this.state.timerId)
+      this.setState(
+        {
+          timerId: null
+        }
+      )
     }
   }
+
+  handleReset() {
+    this.handleStop()
+    this.setState(
+      { secondsLapsed: 0 },
+      () => { this.notifyUpdate() }
+    )
+  }
+
+  clockTick() {
+    if (this.state.timerId) {
+      this.setState({
+        secondsLapsed: this.state.secondsLapsed + 1
+      })
+      this.notifyUpdate()
+    }
+  }
+
+  notifyUpdate() {
+    this.props.updateHandler(this.state.secondsLapsed)
+  }
+
 }

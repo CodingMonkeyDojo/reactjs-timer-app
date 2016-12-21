@@ -15,7 +15,9 @@ export default class DigitalDisplay extends React.Component {
   }
 
   formatTime(seconds) {
-    return `${DigitalDisplay.padUnder60(seconds, 3600)}:${DigitalDisplay.padUnder60(seconds, 60)}:${DigitalDisplay.padUnder60(seconds, 1)}`
+    return seconds ?
+      `${DigitalDisplay.padUnder60(seconds, 3600)}:${DigitalDisplay.padUnder60(seconds, 60)}:${DigitalDisplay.padUnder60(seconds, 1)}` :
+      '00:00:00'
   }
 
   static padUnder60(seconds, units) {
